@@ -1,0 +1,1 @@
+ build/web/index.html build/web/manifest.json:  /home/kyle/programming/hackathon/flutter/web/index.html /home/kyle/programming/hackathon/flutter/web/manifest.json
