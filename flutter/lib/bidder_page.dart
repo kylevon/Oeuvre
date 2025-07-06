@@ -357,7 +357,7 @@ class _BidderPageState extends State<BidderPage> {
                                                       size: 32),
                                                   const SizedBox(width: 16),
                                                   const Text(
-                                                    'Your Art Collection',
+                                                    'Your Collective Art Shares',
                                                     style: TextStyle(
                                                       fontSize: 24,
                                                       fontWeight:
@@ -391,7 +391,7 @@ class _BidderPageState extends State<BidderPage> {
                                                       const SizedBox(
                                                           height: 16),
                                                       const Text(
-                                                        'No Art Pieces Owned Yet',
+                                                        'No Collective Shares Yet',
                                                         style: TextStyle(
                                                           fontSize: 18,
                                                           fontWeight:
@@ -401,7 +401,7 @@ class _BidderPageState extends State<BidderPage> {
                                                       ),
                                                       const SizedBox(height: 8),
                                                       Text(
-                                                        'Participate in auctions to own art pieces!',
+                                                        'Participate in collective auctions to own a share of valuable art pieces!',
                                                         style: TextStyle(
                                                           fontSize: 14,
                                                           color:
@@ -471,7 +471,7 @@ class _BidderPageState extends State<BidderPage> {
                                                                       .spaceBetween,
                                                               children: [
                                                                 Text(
-                                                                    'Total Tokens: ${artPiece['ownership']}',
+                                                                    'Your Share of This Piece: ${artPiece['ownership']}',
                                                                     style: const TextStyle(
                                                                         fontWeight:
                                                                             FontWeight
@@ -479,7 +479,7 @@ class _BidderPageState extends State<BidderPage> {
                                                                         color: Colors
                                                                             .amber)),
                                                                 Text(
-                                                                    'Ownership: ${artPiece['percentage']}%',
+                                                                    'Share Percentage: ${artPiece['percentage']}%',
                                                                     style: const TextStyle(
                                                                         fontWeight:
                                                                             FontWeight
@@ -546,7 +546,7 @@ class _BidderPageState extends State<BidderPage> {
                                               ),
                                               const SizedBox(height: 24),
                                               Text(
-                                                'Join collective bids to compete with wealthy art collectors!',
+                                                'Join a collective bid to own a share of this artwork. The collective bid is the total amount contributed by all participants.',
                                                 style: TextStyle(
                                                   fontSize: 16,
                                                   color: Colors.grey[600],
@@ -687,7 +687,7 @@ class _BidderPageState extends State<BidderPage> {
                                                                           .start,
                                                                   children: [
                                                                     Text(
-                                                                      'Current Bid',
+                                                                      'Collective Bid',
                                                                       style:
                                                                           TextStyle(
                                                                         fontSize:

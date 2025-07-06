@@ -514,7 +514,7 @@ class _AdminPageState extends State<AdminPage> {
           ),
           const SizedBox(height: 8),
           Text(
-            'Collective Bid: ${_formatEther(auction['collectiveBid'])} ETH',
+            'Collective Bid: ${auction['collectiveBid']} ETH',
             style: const TextStyle(color: Colors.white70, fontSize: 16),
           ),
           const SizedBox(height: 12),

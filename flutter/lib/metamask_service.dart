@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 class MetaMaskService {
   static const String _rpcUrl = 'http://127.0.0.1:8545';
   static const String _contractAddress =
-      '0x9a676e781a523b5d0c0e43731313a708cb607508';
+      '0x851356ae760d987e095750cceb3bc6014560891c';
 
   static const Map<String, String> _functionSelectors = {
     'createArtPiece': '0x48bf823b',
@@ -21,6 +21,7 @@ class MetaMaskService {
     'getActiveAuctions': '0xcf44b5d5',
     'getAcquiredArtPieces': '0x5406636f',
     'getAuctionBidders': '0xdf276469',
+    'getCollectiveBid': '0x9b971a34',
     'endAuctionEarly': '0xb0a9a2cd',
   };
 
@@ -559,18 +560,25 @@ class MetaMaskService {
         final artPiece = _decodeArtPiece(artPieceResult);
         print('[MetaMaskService] getArtPiece($artPieceId) decoded: $artPiece');
 
+        // Get collective bid amount
+        final collectiveBidData = _functionSelectors['getCollectiveBid']! +
+            _encodeUint256(artPieceId);
+        final collectiveBidResult = await _callContract(collectiveBidData);
+        print(
+            '[MetaMaskService] getCollectiveBid($artPieceId) raw: $collectiveBidResult');
+
         // Convert Wei to ETH for display
-        final highestBidStr = artPiece['highestBid']?.toString() ?? '0';
-        final highestBidWei = BigInt.parse(highestBidStr);
-        final highestBidEth = highestBidWei / BigInt.from(10).pow(18);
-        final remainder = highestBidWei % BigInt.from(10).pow(18);
-        final highestBidEthDouble = highestBidEth.toDouble() +
+        final collectiveBidStr = collectiveBidResult?.substring(2) ?? '0';
+        final collectiveBidWei = BigInt.parse(collectiveBidStr, radix: 16);
+        final collectiveBidEth = collectiveBidWei / BigInt.from(10).pow(18);
+        final remainder = collectiveBidWei % BigInt.from(10).pow(18);
+        final collectiveBidEthDouble = collectiveBidEth.toDouble() +
             (remainder.toDouble() / BigInt.from(10).pow(18).toDouble());
 
         auctions.add({
           'id': artPieceId,
           'name': artPiece['name'],
-          'collectiveBid': highestBidEthDouble.toStringAsFixed(4),
+          'collectiveBid': collectiveBidEthDouble.toStringAsFixed(4),
           'auctionEndTime': artPiece['auctionEndTime'] ?? 0,
         });
       }
